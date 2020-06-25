@@ -6,6 +6,7 @@ dotenv.config({
 });
 
 const express = require('express');
+const mongoose = require('mongoose');
 const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -36,6 +37,20 @@ app.prepare()
         server.listen(PORT, err => {
             if (err) throw err;
             console.log(`> Ready on http://localhost:${PORT}`);
+        });
+
+        const DB =
+            process.env.DATABASE
+                .replace('<password>', process.env.DATABASE_PASSWORD)
+                .replace('<database>', process.env.DATABASE_NAME);
+
+        mongoose.connect(DB, {
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true
+        }).then(con => {
+            console.log('Connected to DB successfully.');
         });
     })
     .catch(err => {
