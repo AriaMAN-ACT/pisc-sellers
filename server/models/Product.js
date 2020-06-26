@@ -25,6 +25,9 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Category',
         required: [true, 'A product must have a category.']
+    },
+    images: {
+        type: [String]
     }
 });
 
