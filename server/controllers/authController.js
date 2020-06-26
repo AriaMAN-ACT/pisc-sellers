@@ -86,3 +86,8 @@ const sendToken = (user, statusCode, res) => {
         }
     });
 };
+
+exports.signOut = (req, res) => {
+    res.clearCookie('jwt');
+    res.status(200).json({status: 'success'})
+};
