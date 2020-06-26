@@ -7,6 +7,7 @@ dotenv.config({
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const next = require('next');
 
 const APIRouter = require('./routes/APIRouter');
@@ -23,6 +24,8 @@ app.prepare()
         server.use(express.json({
             limit: '10kb'
         }));
+
+        server.use(cookieParser());
 
         server.use((req, res, next) => {
             res.header("Access-Control-Allow-Origin", "*");
@@ -49,7 +52,7 @@ app.prepare()
         const DB =
             process.env.DATABASE
                 .replace('<password>', process.env.DATABASE_PASSWORD)
-                .replace('<database>', process.env.DATABASE_NAME);
+                .replace('<dbname>', process.env.DATABASE_NAME);
 
         mongoose.connect(DB, {
             useNewUrlParser: true,
