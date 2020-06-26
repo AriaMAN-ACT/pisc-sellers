@@ -33,9 +33,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: {
             values: ['admin', 'user'],
-            message: 'A User Must Have rote Value Set To admin Or User.'
+            message: 'A User Must Have rote Value Set To admin Or user.'
         },
         default: 'user'
+    },
+    manager: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: [true, 'A User Must Have A manager.']
     }
 });
 
