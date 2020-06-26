@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     displayName: {
         type: String,
+        required: [true, 'A user must have a displayName'],
         maxLength: [20, 'User\'s display name\'s length must be lower than 20 or 20.'],
         minLength: [4, 'User\'s display name\'s length must be higher than 4 or 4.']
     },
