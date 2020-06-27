@@ -25,8 +25,9 @@ exports.saveImages = catchRequest(
                     .resize(500, 500)
                     .toFormat('jpeg')
                     .jpeg({quality: 90})
-                    .toFile(`uploads/useravatar/${req.files.avatarImage[0].filename}`);
+                    .toFile(`uploads/productimage/${req.files.avatarImage[0].filename}`);
             }
         }
+        next();
     }
 );
