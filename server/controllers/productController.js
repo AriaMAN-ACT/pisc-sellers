@@ -19,7 +19,7 @@ exports.saveImages = catchRequest(
         if (req.files) {
             for (let i = 0; i < req.files.length; i++) {
                 const ext = req.files[i].mimetype.split('/')[1];
-                req.files[i].filename = `product-image-${req.user.id}-${Date.now()}.${ext}`;
+                req.files[i].filename = `product-image-${i + 1}-${req.user.id}-${Date.now()}.${ext}`;
                 req.body.images[i] = req.files[i].filename;
                 await sharp(req.files[i].buffer)
                     .resize(500, 500)
